@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,20 +7,19 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  isScrolled: boolean = false;
+  isScrolled: boolean = false; // Adicione esta linha
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (window.scrollY > 100) { // Ajuste esse valor conforme necessário
-      this.isScrolled = true;
-    } else {
-      this.isScrolled = false;
-    }
-  }
-
-  constructor() { }
+  constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        this.renderer.addClass(this.el.nativeElement, 'scrolled');
+        this.isScrolled = true; // Atualize o valor aqui quando rolado
+      } else {
+        this.renderer.removeClass(this.el.nativeElement, 'scrolled');
+        this.isScrolled = false; // Atualize o valor aqui quando voltar ao topo
+      }
+    });
   }
-
 }

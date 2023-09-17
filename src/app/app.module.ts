@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,8 @@ import { CarrosselComponent } from './components/carrossel/carrossel.component';
 import { CardComponent } from './components/card/card.component';
 import { CardPopularComponent } from './components/card-popular/card-popular.component';
 import { CardCartazComponent } from './components/card-cartaz/card-cartaz.component';
+import { CardPopularShowsComponent } from './components/card-popular-shows/card-popular-shows.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +25,15 @@ import { CardCartazComponent } from './components/card-cartaz/card-cartaz.compon
     CarrosselComponent,
     CardComponent,
     CardPopularComponent,
-    CardCartazComponent
+    CardCartazComponent,
+    CardPopularShowsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    HttpClientModule
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

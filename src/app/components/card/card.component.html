@@ -1,7 +1,9 @@
 <div class="carousel-container">
-  <div class="movie-card" *ngFor="let movie of movies">
+  <div class="movie-card" *ngFor="let movie of movies.slice(0, 15)">
     <div class="container-card">
+      <a [routerLink]="['/details', movie.id]">
       <img class="movie-image" [src]="'https://image.tmdb.org/t/p/w500/' + movie?.poster_path" alt="{{ movie?.title }}" />
+      </a>
     </div>
   </div>
 </div>

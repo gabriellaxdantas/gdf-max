@@ -8,6 +8,7 @@ import { Movie } from 'src/models/movie.model';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent<T> implements OnInit {
+
   @Input() movies: Movie[] = [];
   constructor() { }
 
