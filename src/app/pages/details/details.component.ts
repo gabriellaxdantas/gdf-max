@@ -1,35 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from 'src/app/services/movies.service';
+import { Movie } from 'src/models/movie.model';
+import { Cast } from 'src/models/cast.model';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
+
 export class DetailsComponent implements OnInit {
   movieId!: number;
-  movieDetails: any; // Tipo apropriado para os detalhes do filme
+  movieDetails: Movie | undefined;
+  movieCastResult: Cast[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MoviesService
+    private movieService: MoviesService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.movieId = +params['id']; // Obtém o ID do filme da rota
+      this.movieId = +params['id'];
 
-      // Verificar se movieId é um número válido
       if (!isNaN(this.movieId)) {
-        // Use o serviço para carregar os detalhes do filme com base no movieId
         this.movieService.getMovieDetails(this.movieId).subscribe((data) => {
-          this.movieDetails = data; // Atualize os detalhes do filme
+          this.movieDetails = data;
+          console.log('Backdrop Path:', this.movieDetails.backdrop_path);
+          console.log('subtitulo do trem:', this.movieDetails.alternative_titles);
+          console.log('titulo:', this.movieDetails.title);
+          console.log('sinopse:', this.movieDetails.description);
+          console.log('idades:', this.movieDetails.ageRule);
         });
-      } else {
-        // Tratar o caso em que movieId não é válido (por exemplo, redirecionar para uma página de erro)
+
+        this.movieService.getMovieCast(this.movieId).subscribe((cast) => {
+          this.movieCastResult = cast;
+        });
       }
     });
   }
-
 }

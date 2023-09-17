@@ -1,0 +1,8 @@
+*{
+  background: rgb(76,67,199);
+  background: linear-gradient(90deg, rgba(76,67,199,1) 0%, rgba(17,8,46,1) 51%, rgba(89,54,108,1) 75%, rgba(33,36,75,1) 95%);
+}
+app-footer{
+  background: rgb(76,67,199);
+  background: linear-gradient(90deg, rgba(76,67,199,1) 0%, rgba(17,8,46,1) 51%, rgba(89,54,108,1) 75%, rgba(33,36,75,1) 95%);
+}

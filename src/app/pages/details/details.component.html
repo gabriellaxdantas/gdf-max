@@ -1,1 +1,45 @@
-<h1>TESTE</h1>
+<div class="container-details">
+  <app-nav-bar></app-nav-bar>
+
+  <div class="contain mt-5">
+    <div class="row p-5">
+      <div class="col-lg-2" *ngIf="movieDetails?.backdrop_path">
+        <img src="https://image.tmdb.org/t/p/original/{{movieDetails?.backdrop_path}}">
+      </div>
+      <div class="col-lg-10 mt-5 p-4">
+        <h1 class="mt-2 mb-2">{{movieDetails?.title}}</h1>
+        <h2 class="mt-2 mb-2">{{movieDetails?.alternative_titles}}</h2>
+
+
+        <div class="mb-2">
+          <span class="badge badge-primary" *ngFor="let genre of movieDetails?.gender">{{genre}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="mb-2">
+      <div class="date-rating">
+        <span>
+          <i class="fa-regular fa-calendar"></i> {{ movieDetails?.relaseDate | date:'dd/MM/yyyy' }}
+        </span>
+        <span>
+          <i class="fa-regular fa-star"></i> {{movieDetails?.rate}}
+        </span>
+      </div>
+    </div>
+    <div class="descricao">
+      <p class="mt-3 mb-3">{{movieDetails?.description}}</p>
+    </div>
+
+
+  <div class="atores">
+    <h3>Atores:</h3>
+    <div class="card" *ngFor="let actor of movieCastResult.slice(0, 6)">
+      <img src="https://image.tmdb.org/t/p/original/{{actor.profile_path}}" alt="{{actor.original_name}}">
+      <p>{{actor.original_name}}</p>
+      <p>{{actor.character}}</p>
+    </div>
+  </div>
+</div>
+
+  <app-footer></app-footer>
+</div>

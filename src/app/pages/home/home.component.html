@@ -1,7 +1,11 @@
-<app-nav-bar></app-nav-bar>
+<div class="container-home">
+  <app-nav-bar></app-nav-bar>
 
-<app-card-popular [movies]="movies"></app-card-popular>
-<app-card-cartaz [movies]="movies"></app-card-cartaz>
-<app-card-popular-shows [movies]="movies"></app-card-popular-shows>
+  <app-card-popular [movies]="movies"></app-card-popular>
+  <app-card-cartaz [movies]="movies"></app-card-cartaz>
+  <app-card-popular-shows [movies]="movies"></app-card-popular-shows>
+  <app-card-ranked-shows [movies]="movies"></app-card-ranked-shows>
 
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</div>
+

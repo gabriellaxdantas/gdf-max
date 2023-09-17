@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { CardPopularComponent } from './components/card-popular/card-popular.com
 import { CardCartazComponent } from './components/card-cartaz/card-cartaz.component';
 import { CardPopularShowsComponent } from './components/card-popular-shows/card-popular-shows.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CardRankedShowsComponent } from './components/card-ranked-shows/card-ranked-shows.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,15 @@ import { FooterComponent } from './components/footer/footer.component';
     CardPopularComponent,
     CardCartazComponent,
     CardPopularShowsComponent,
-    FooterComponent
+    FooterComponent,
+    CardRankedShowsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    DatePipe
   ],
   providers: [],
   bootstrap: [AppComponent]

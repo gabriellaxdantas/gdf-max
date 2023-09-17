@@ -17,11 +17,13 @@
 .movie-image {
   width: 100%;
   height: 100%;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: opacity 0.3s;
   border-radius: 2px;
 }
-
+.movie-image:hover{
+  opacity: 1;
+}
 .container-card {
   border: 3px solid transparent;
   border-radius: 5px;
@@ -31,11 +33,6 @@
   border: 3px solid rgb(128, 38, 202);
   cursor: pointer;
 }
-
-.container-card > img:hover {
-  opacity: 1;
-}
-
 
 .carousel-container::-webkit-scrollbar {
   width: 20px;
