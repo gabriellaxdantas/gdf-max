@@ -9,6 +9,7 @@ import { Movie } from 'src/models/movie.model';
 })
 export class CardComponent<T> implements OnInit {
 
+  @Input() mediaType: string = '';
   @Input() movies: Movie[] = [];
   constructor() { }
 

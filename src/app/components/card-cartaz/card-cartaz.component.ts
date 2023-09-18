@@ -6,7 +6,7 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./card-cartaz.component.css']
 })
 export class CardCartazComponent implements OnInit {
-
+  mediaType = 'movie';
   @Input() movies: any[] = [];
   @Input() posterUrl: string = '';
   @Input() backUrl: string = '';

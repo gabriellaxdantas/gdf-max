@@ -5,17 +5,17 @@ import { Movie } from 'src/models/movie.model';
 import { Cast } from 'src/models/cast.model';
 import { DatePipe } from '@angular/common';
 
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-
 export class DetailsComponent implements OnInit {
-  movieId!: number;
-  movieDetails: Movie | undefined;
-  movieCastResult: Cast[] = [];
+  mediaId!: number;
+  mediaType!: string; // Vai conter 'tv/top' neste exemplo
+  mediaDetails: Movie | undefined;
+  mediaCastResult: Cast[] = [];
+  mediaImages: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,20 +25,16 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.movieId = +params['id'];
+      this.mediaId = +params['id'];
+      this.mediaType = params['mediaType']; // Vai conter 'tv/top' neste exemplo
 
-      if (!isNaN(this.movieId)) {
-        this.movieService.getMovieDetails(this.movieId).subscribe((data) => {
-          this.movieDetails = data;
-          console.log('Backdrop Path:', this.movieDetails.backdrop_path);
-          console.log('subtitulo do trem:', this.movieDetails.alternative_titles);
-          console.log('titulo:', this.movieDetails.title);
-          console.log('sinopse:', this.movieDetails.description);
-          console.log('idades:', this.movieDetails.ageRule);
+      if (!isNaN(this.mediaId)) {
+        this.movieService.getMediaDetails(this.mediaId, this.mediaType).subscribe((data) => {
+          this.mediaDetails = data;
         });
 
-        this.movieService.getMovieCast(this.movieId).subscribe((cast) => {
-          this.movieCastResult = cast;
+        this.movieService.getMovieCast(this.mediaId, this.mediaType).subscribe((cast) => {
+          this.mediaCastResult = cast;
         });
       }
     });

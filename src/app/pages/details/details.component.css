@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-
 img{
   width: 100%;
   height: 100%;
@@ -33,6 +32,7 @@ img{
 }
 .col-lg-10 > h1{
   font-size: 80px;
+  font-weight: 800;
 }
 .col-lg-10 > h2{
   font-size: 40px;
@@ -53,7 +53,9 @@ img{
   background-color: transparent;
 }
 .date-rating > span{
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: 600;
+  word-spacing: 1px;
   background-color: transparent;
   margin-right: 30px;
 }
@@ -61,24 +63,26 @@ img{
   margin-right: 15px;
   background-color:  rgb(31, 14, 87);
   border: 3px solid rgb(31, 14, 87);
-  padding: 8px;
-  border-radius: 5px;
-  font-size: 22px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 .descricao{
   margin: 40px 50px 0px 50px;
 }
 .descricao > p{
   font-size: 30px;
+  color: grey;
+  word-spacing: 2px;
 }
 
 
-/* Adicione este CSS para exibir os cards dos atores lado a lado */
 .atores {
   margin:40px 50px;
 }
 .atores > h3{
-  font-size: 25px;
+  font-size: 40px;
 }
 
 .card {
@@ -105,7 +109,6 @@ img{
 }
 .card p {
   margin: 10px 0;
-  font-size: 18px;
+  font-size: 19px;
 }
 
-/* Estilos adicionais para os cards (ajuste conforme necessário) */

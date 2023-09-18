@@ -7,6 +7,7 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./card-popular.component.css']
 })
 export class CardPopularComponent implements OnInit {
+  mediaType = 'movie';
   @Input() movies: any = {};
   @Input() posterUrl: string = '';
 

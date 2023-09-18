@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Movie } from 'src/models/movie.model';
 import { Cast } from 'src/models/cast.model';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class MoviesService {
   private language = 'pt-BR';
 
   constructor(private http: HttpClient) {}
+
+  private generateMediaUrl(mediaType: string, mediaId: number): string {
+    return `${this.apiUrl}/${mediaType}/${mediaId}?api_key=${this.apiKey}&language=${this.language}`;
+  }
+
 
   searchMoviesInHighDemand(): Observable<Movie[]> {
     return this.http.get(`${this.apiUrl}/movie/popular?api_key=${this.apiKey}&language=${this.language}`).pipe(
@@ -41,37 +47,34 @@ export class MoviesService {
     return this.http.get(`${this.apiUrl}/tv/top_rated?api_key=${this.apiKey}&language=${this.language}`);
   }
 
-  getMovieDetails(movieId: number): Observable<Movie> {
-    return this.http
-      .get(`${this.apiUrl}/movie/${movieId}?api_key=${this.apiKey}&language=${this.language}`)
-      .pipe(
-        map((data: any) => {
-          const alternativeTitles = data.alternative_titles?.titles.map(
-            (title: any) => title.title
-          );
-
-          return {
-            id: data.id,
-            poster_path: data.poster_path,
-            backdrop_path: data.backdrop_path,
-            title: data.title,
-            alternative_titles: data.tagline,
-            description: data.overview,
-            gender: data.genres?.map((genre: any) => genre.name) || [],
-            relaseDate: data.release_date,
-            rate: data.vote_average,
-            duration: data.runtime.toString(),
-            ageRule: data.content_ratings
-          };
-        })
+ getMediaDetails(mediaId: number, mediaType: string): Observable<Movie> {
+  return this.http.get(`${this.apiUrl}/${mediaType}/${mediaId}?api_key=${this.apiKey}&language=${this.language}`).pipe(
+    map((data: any) => {
+      const alternativeTitles = data.alternative_titles?.titles.map(
+        (title: any) => title.title
       );
-  }
+
+      return {
+        id: data.id,
+        poster_path: data.poster_path,
+        backdrop_path: data.backdrop_path,
+        title: data.title,
+        alternative_titles: data.tagline,
+        description: data.overview,
+        gender: data.genres?.map((genre: any) => genre.name) || [],
+        relaseDate: data.release_date,
+        rate: data.vote_average,
+        duration: data.runtime ? data.runtime.toString() : '',
+        ageRule: data.content_ratings
+      };
+    })
+  );
+}
 
 
-
-  getMovieCast(movieId: number): Observable<Cast[]> {
+  getMovieCast(movieId: number, mediaType: string): Observable<Cast[]> {
     return this.http
-      .get(`${this.apiUrl}/movie/${movieId}/credits?api_key=${this.apiKey}&language=${this.language}`)
+      .get(`${this.apiUrl}/${mediaType}/${movieId}/credits?api_key=${this.apiKey}&language=${this.language}`)
       .pipe(
         map((data: any) => {
           return data.cast.map((cast: any) => {
@@ -85,4 +88,8 @@ export class MoviesService {
         })
       );
   }
+
+
+
+
 }

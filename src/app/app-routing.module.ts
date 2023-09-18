@@ -6,7 +6,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'details/:id', component: DetailsComponent },
+  { path: 'details/:mediaType/:id', component: DetailsComponent },
 ];
 
 @NgModule({

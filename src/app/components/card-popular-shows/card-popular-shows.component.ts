@@ -7,7 +7,7 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./card-popular-shows.component.css']
 })
 export class CardPopularShowsComponent implements OnInit {
-
+  mediaType = 'tv';
   @Input() movies: any[] = [];
   @Input() posterUrl: string = '';
   constructor(private movieService:MoviesService) { }
@@ -17,5 +17,6 @@ export class CardPopularShowsComponent implements OnInit {
       this.movies = data.results;
     });
   }
+
 
 }

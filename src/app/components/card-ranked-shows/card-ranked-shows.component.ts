@@ -7,7 +7,7 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./card-ranked-shows.component.css']
 })
 export class CardRankedShowsComponent implements OnInit {
-
+  mediaType = 'tv';
   @Input() movies: any[] = [];
   @Input() posterUrl: string = '';
   constructor(private movieService:MoviesService) { }
