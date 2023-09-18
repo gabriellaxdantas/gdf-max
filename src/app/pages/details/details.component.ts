@@ -26,7 +26,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.mediaId = +params['id'];
-      this.mediaType = params['mediaType']; // Vai conter 'tv/top' neste exemplo
+      this.mediaType = params['mediaType'];
+
 
       if (!isNaN(this.mediaId)) {
         this.movieService.getMediaDetails(this.mediaId, this.mediaType).subscribe((data) => {

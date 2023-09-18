@@ -14,7 +14,7 @@ export class CardPopularShowsComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.searchTVShowsInHighDemand().subscribe(data => {
-      this.movies = data.results;
+      this.movies = data;
     });
   }
 

@@ -14,7 +14,7 @@ export class CardRankedShowsComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.searchTVShowsRanked().subscribe(data => {
-      this.movies = data.results;
+      this.movies = data;
     });
   }
 

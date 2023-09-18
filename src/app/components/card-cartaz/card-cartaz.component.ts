@@ -14,7 +14,7 @@ export class CardCartazComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.searchMoviesInTheatre().subscribe(data => {
-      this.movies = data.results;
+      this.movies = data;
     });
   }
 

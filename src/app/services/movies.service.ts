@@ -16,10 +16,6 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  private generateMediaUrl(mediaType: string, mediaId: number): string {
-    return `${this.apiUrl}/${mediaType}/${mediaId}?api_key=${this.apiKey}&language=${this.language}`;
-  }
-
 
   searchMoviesInHighDemand(): Observable<Movie[]> {
     return this.http.get(`${this.apiUrl}/movie/popular?api_key=${this.apiKey}&language=${this.language}`).pipe(
@@ -36,40 +32,71 @@ export class MoviesService {
     );
   }
 
-  searchMoviesInTheatre(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/movie/now_playing?api_key=${this.apiKey}&language=${this.language}`);
+  searchMoviesInTheatre(): Observable<Movie[]> {
+    return this.http.get(`${this.apiUrl}/movie/now_playing?api_key=${this.apiKey}&language=${this.language}`).pipe(
+      map((data: any) => {
+        return data.results.map((movie: any) => {
+          return {
+            id: movie.id,
+            poster_path: movie.poster_path,
+            title: movie.title,
+            overview: movie.overview,
+          };
+        });
+      })
+    );
   }
 
-  searchTVShowsInHighDemand(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tv/popular?api_key=${this.apiKey}&language=${this.language}`);
+  searchTVShowsInHighDemand(): Observable<Movie[]> {
+
+    return this.http.get(`${this.apiUrl}/tv/popular?api_key=${this.apiKey}&language=${this.language}`).pipe(
+      map((data: any) => {
+        return data.results.map((movie: any) => {
+          return {
+            id: movie.id,
+            poster_path: movie.poster_path,
+            title: movie.title,
+            overview: movie.overview,
+          };
+        });
+      })
+    );
   }
-  searchTVShowsRanked(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/tv/top_rated?api_key=${this.apiKey}&language=${this.language}`);
+  searchTVShowsRanked(): Observable<Movie[]>{
+    return this.http.get(`${this.apiUrl}/tv/top_rated?api_key=${this.apiKey}&language=${this.language}`).pipe(
+      map((data: any) => {
+        return data.results.map((movie: any) => {
+          return {
+            id: movie.id,
+            poster_path: movie.poster_path,
+            title: movie.title,
+            overview: movie.overview,
+          };
+        });
+      })
+    );
   }
 
- getMediaDetails(mediaId: number, mediaType: string): Observable<Movie> {
-  return this.http.get(`${this.apiUrl}/${mediaType}/${mediaId}?api_key=${this.apiKey}&language=${this.language}`).pipe(
-    map((data: any) => {
-      const alternativeTitles = data.alternative_titles?.titles.map(
-        (title: any) => title.title
-      );
+  getMediaDetails(mediaId: number, mediaType: string): Observable<Movie> {
+    return this.http.get(`${this.apiUrl}/${mediaType}/${mediaId}?api_key=${this.apiKey}&language=${this.language}`).pipe(
+      map((data: any) => {
+        return {
+          id: data.id,
+          poster_path: data.poster_path,
+          backdrop_path: data.backdrop_path,
+          title: data.name || data.title,
+          alternative_titles: data.tagline,
+          description: data.overview,
+          gender: data.genres?.map((genre: any) => genre.name) || [],
+          relaseDate: data.release_date || data.first_air_date,
+          rate: data.vote_average,
+          duration: data.runtime,
+          ageRule: data.content_ratings
+        };
+      })
+    );
+  }
 
-      return {
-        id: data.id,
-        poster_path: data.poster_path,
-        backdrop_path: data.backdrop_path,
-        title: data.title,
-        alternative_titles: data.tagline,
-        description: data.overview,
-        gender: data.genres?.map((genre: any) => genre.name) || [],
-        relaseDate: data.release_date,
-        rate: data.vote_average,
-        duration: data.runtime ? data.runtime.toString() : '',
-        ageRule: data.content_ratings
-      };
-    })
-  );
-}
 
 
   getMovieCast(movieId: number, mediaType: string): Observable<Cast[]> {
