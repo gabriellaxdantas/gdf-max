@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   mediaDetails: Movie | undefined;
   mediaCastResult: Cast[] = [];
   mediaImages: string[] = [];
+  similarMovies: Movie[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +37,10 @@ export class DetailsComponent implements OnInit {
 
         this.movieService.getMovieCast(this.mediaId, this.mediaType).subscribe((cast) => {
           this.mediaCastResult = cast;
+        });
+
+        this.movieService.getSimilarMovies(this.mediaId, this.mediaType).subscribe((similarMovies) => {
+          this.similarMovies = similarMovies;
         });
       }
     });

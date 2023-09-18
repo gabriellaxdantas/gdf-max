@@ -116,6 +116,23 @@ export class MoviesService {
       );
   }
 
+  getSimilarMovies(mediaId: number, mediaType: string): Observable<Movie[]> {
+    return this.http
+      .get(`${this.apiUrl}/${mediaType}/${mediaId}/similar?api_key=${this.apiKey}&language=${this.language}`)
+      .pipe(
+        map((data: any) => {
+          return data.results.map((movie: any) => {
+            return {
+              id: movie.id,
+              poster_path: movie.poster_path,
+              title: movie.title,
+              overview: movie.overview,
+            };
+          });
+        })
+      );
+  }
+
 
 
 

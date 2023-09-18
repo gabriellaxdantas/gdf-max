@@ -17,14 +17,14 @@ img{
   height: auto;
   max-height: 750px;
   object-fit: cover;
-  filter: brightness(0.2) grayscale(0.1);
+  filter: brightness(0.4) grayscale(0.1);
 
 }
 
 
 .col-lg-10 {
   position: absolute;
-  top: 27%;
+  top: 17%;
   color: #ffffff;
   width: 80%;
   margin: 0px 0px 0px 50px;
@@ -79,7 +79,7 @@ img{
 
 
 .atores {
-  margin:40px 50px;
+  margin:70px 50px 0px 50px;
 }
 .atores > h3{
   font-size: 40px;
@@ -112,3 +112,10 @@ img{
   font-size: 19px;
 }
 
+.similares{
+  margin: 50px;
+}
+.similares > h3{
+  font-size: 30px;
+  margin-bottom: 15px;
+}
