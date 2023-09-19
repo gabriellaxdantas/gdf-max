@@ -25,25 +25,25 @@ export class DetailsComponent implements OnInit {
   ) {}
 
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.mediaId = +params['id'];
-      this.mediaType = params['mediaType'];
+    ngOnInit(): void {
+  this.route.params.subscribe((params) => {
+    this.mediaId = +params['id'];
+    this.mediaType = params['mediaType'];
 
-      if (!isNaN(this.mediaId)) {
-        this.movieService.getMediaDetails(this.mediaId, this.mediaType).subscribe((data) => {
-          this.mediaDetails = data;
-        });
+    if (!isNaN(this.mediaId)) {
+      this.movieService.getMediaDetails(this.mediaId, this.mediaType).subscribe((data) => {
+        this.mediaDetails = data;
+      });
 
-        this.movieService.getMovieCast(this.mediaId, this.mediaType).subscribe((cast) => {
-          this.mediaCastResult = cast;
-        });
+      this.movieService.getMovieCast(this.mediaId, this.mediaType).subscribe((cast) => {
+        this.mediaCastResult = cast;
+      });
 
-        this.movieService.getSimilarMovies(this.mediaId, this.mediaType).subscribe((similarMovies) => {
-          this.similarMovies = similarMovies;
-        });
-      }
-    });
-  }
+      this.movieService.getSimilarMovies(this.mediaId, this.mediaType).subscribe((similarMovies) => {
+        this.similarMovies = similarMovies;
+      });
+    }
+  });
+}
 
 }

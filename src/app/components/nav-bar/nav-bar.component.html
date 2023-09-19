@@ -2,8 +2,8 @@
   <nav class="navbar" [ngClass]="{'scrolled': isScrolled}">
     <div class="container">
       <ul class="menu">
-        <li><a [routerLink]="['/filmes-series']" (click)="navigateToDetails('movie')">Filmes</a></li>
-        <li><a [routerLink]="['/filmes-series']" (click)="navigateToDetails('tv')">Séries</a></li>
+        <li><a [routerLink]="['/filmes-series']" [queryParams]="{ type: 'movie' }">Filmes</a></li>
+        <li><a [routerLink]="['/filmes-series']" [queryParams]="{ type: 'tv' }">Séries</a></li>
       </ul>
       <div class="logo">
         <a [routerLink]="['/']">

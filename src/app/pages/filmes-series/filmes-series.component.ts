@@ -16,10 +16,11 @@ export class FilmesSeriesComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.type = params['type'];
+      console.log(this.type)
 
-
+      // Use o serviço para buscar os top ranked filmes ou TV shows
       this.moviesServies.getTopRanked(this.type).subscribe((data) => {
-        this.topRankedData = data.results;
+        this.topRankedData = data.results; // Os dados podem variar dependendo da API
       });
     });
   }

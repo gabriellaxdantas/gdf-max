@@ -32,7 +32,7 @@ export class NavBarComponent implements OnInit {
     private searchService: SearchMoviesService,
     private renderer: Renderer2,
     private el: ElementRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute // Importe o ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +40,8 @@ export class NavBarComponent implements OnInit {
       this.query = query;
     });
 
-    this.route.params.subscribe((params: any) => {
+    // Obtenha o valor de mediaId da rota ativa
+    this.route.params.subscribe((params: any) => { // Tipando 'params' como any
       this.mediaId = +params['id'];
     });
 
@@ -56,7 +57,7 @@ export class NavBarComponent implements OnInit {
   }
 
   navigateToDetails(type: string) {
-
+    // Navegue para a página de detalhes com base no tipo selecionado e no valor de mediaId
     this.router.navigate(['/details', type, this.mediaId]);
   }
 }
