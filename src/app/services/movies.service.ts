@@ -80,18 +80,20 @@ export class MoviesService {
   getMediaDetails(mediaId: number, mediaType: string): Observable<Movie> {
     return this.http.get(`${this.apiUrl}/${mediaType}/${mediaId}?api_key=${this.apiKey}&language=${this.language}`).pipe(
       map((data: any) => {
+        const isTVShow = !!data.first_air_date;
         return {
           id: data.id,
           poster_path: data.poster_path,
           backdrop_path: data.backdrop_path,
-          title: data.name || data.title,
+          title: isTVShow ? data.name : data.title,
           alternative_titles: data.tagline,
           description: data.overview,
           gender: data.genres?.map((genre: any) => genre.name) || [],
-          relaseDate: data.release_date || data.first_air_date,
+          releaseDate: isTVShow ? data.first_air_date : data.release_date,
           rate: data.vote_average,
-          duration: data.runtime,
-          ageRule: data.content_ratings
+          duration: isTVShow ? null : data.runtime, // Defina como nulo para séries de TV
+          ageRule: data.append_to_response || data.content_ratings,
+          media_type: isTVShow ? 'tv' : 'movie' // Define o tipo de mídia com base no resultado
         };
       })
     );

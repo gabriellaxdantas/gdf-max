@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { CardCartazComponent } from './components/card-cartaz/card-cartaz.compon
 import { CardPopularShowsComponent } from './components/card-popular-shows/card-popular-shows.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CardRankedShowsComponent } from './components/card-ranked-shows/card-ranked-shows.component';
+import { SearchedComponent } from './pages/searched/searched.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,16 @@ import { CardRankedShowsComponent } from './components/card-ranked-shows/card-ra
     CardCartazComponent,
     CardPopularShowsComponent,
     FooterComponent,
-    CardRankedShowsComponent
+    CardRankedShowsComponent,
+    SearchedComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    DatePipe
+    DatePipe,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

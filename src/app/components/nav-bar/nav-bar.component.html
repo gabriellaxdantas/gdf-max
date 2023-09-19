@@ -1,20 +1,21 @@
 <header>
   <nav class="navbar" [ngClass]="{'scrolled': isScrolled}">
-      <div class="container">
-
-          <ul class="menu">
-              <li><a href="#">Filmes</a></li>
-              <li><a href="#">Séries</a></li>
-          </ul>
-
-          <div class="logo">
-            <img src="../../../assets/logo.png" alt="Logo HBO Max">
-        </div>
-          <div class="search">
-              <button type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-          </div>
+    <div class="container">
+      <ul class="menu">
+        <li><a href="#">Filmes</a></li>
+        <li><a href="#">Séries</a></li>
+      </ul>
+      <div class="logo">
+        <img src="../../../assets/logo.png" alt="Logo GDF Max">
       </div>
+      <div class="search" [ngClass]="{'open': isSearchOpen}">
+        <label>
+          <input type="text" [(ngModel)]="query" *ngIf="isSearchOpen" placeholder="Pesquisar">
+          <button type="button" (click)="toggleSearch()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </label>
+      </div>
+    </div>
   </nav>
 </header>

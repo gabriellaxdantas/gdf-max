@@ -25,12 +25,13 @@
   opacity: 1;
 }
 .container-card {
-  border: 1px solid transparent;
+  border: 3px solid transparent;
+  transition: opacity 0.3s ease, border 0.3s ease;
   border-radius: 5px;
 }
 
 .container-card:hover {
-  border: 1px solid rgb(255, 255, 255);
+  border: 3px solid rgb(116, 65, 255);
   cursor: pointer;
 }
 

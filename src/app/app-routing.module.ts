@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { CommonModule, DatePipe } from '@angular/common';
+import { SearchedComponent } from './pages/searched/searched.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'details/:mediaType/:id', component: DetailsComponent },
+  { path: 'searched', component: SearchedComponent }
 ];
 
 @NgModule({

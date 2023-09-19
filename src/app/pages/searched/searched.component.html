@@ -1,0 +1,20 @@
+<div class="container-searched">
+  <app-nav-bar></app-nav-bar>
+
+  <div class="search-results-container">
+    <div class="search-results-list">
+      <div class="search-results" *ngIf="results.length > 0">
+        <h2>Resultados para: {{ query }}</h2>
+        <div class="search-results-list">
+          <div class="search-result" *ngFor="let result of results">
+            <a [routerLink]="['/details', result.media_type, result.id]">
+              <img class="movie-image" [src]="'https://image.tmdb.org/t/p/w500/' + result.poster_path" alt="{{ result.title }}" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
