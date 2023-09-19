@@ -24,11 +24,11 @@ export class DetailsComponent implements OnInit {
     private datePipe: DatePipe
   ) {}
 
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.mediaId = +params['id'];
       this.mediaType = params['mediaType'];
-
 
       if (!isNaN(this.mediaId)) {
         this.movieService.getMediaDetails(this.mediaId, this.mediaType).subscribe((data) => {
@@ -45,4 +45,5 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
+
 }

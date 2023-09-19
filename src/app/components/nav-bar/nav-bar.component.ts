@@ -1,7 +1,8 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router'; // Importe o ActivatedRoute
 import { SearchMoviesService } from 'src/app/services/search-movies.service';
 import { FormsModule } from '@angular/forms';
+import { Movie } from 'src/models/movie.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,7 +13,7 @@ export class NavBarComponent implements OnInit {
   isSearchOpen = false;
   isScrolled: boolean = false;
   query: string = '';
-
+  mediaId: number = 0;
 
   toggleSearch() {
     if (this.isSearchOpen) {
@@ -25,14 +26,23 @@ export class NavBarComponent implements OnInit {
     this.isSearchOpen = !this.isSearchOpen;
   }
 
-  constructor(private searchState: SearchMoviesService, private router: Router, private searchService: SearchMoviesService, private renderer: Renderer2, private el: ElementRef) { }
+  constructor(
+    private searchState: SearchMoviesService,
+    private router: Router,
+    private searchService: SearchMoviesService,
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    console.log('teste')
-    this.searchState.query$.subscribe(query => {
+    this.searchState.query$.subscribe((query) => {
       this.query = query;
     });
 
+    this.route.params.subscribe((params: any) => {
+      this.mediaId = +params['id'];
+    });
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
@@ -44,6 +54,9 @@ export class NavBarComponent implements OnInit {
       }
     });
   }
+
+  navigateToDetails(type: string) {
+
+    this.router.navigate(['/details', type, this.mediaId]);
+  }
 }
-
-

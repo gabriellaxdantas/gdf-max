@@ -26,7 +26,7 @@ export class SearchedComponent implements OnInit {
 
     this.route.queryParams.subscribe((params) => {
       if (params['query']) {
-        this.searchService.searchMoviesAndShows(params['query']).subscribe((results) => { // Correção aqui
+        this.searchService.searchMoviesAndShows(params['query']).subscribe((results) => {
           this.results = results;
           console.log(this.results);
         });

@@ -2,11 +2,13 @@
   <nav class="navbar" [ngClass]="{'scrolled': isScrolled}">
     <div class="container">
       <ul class="menu">
-        <li><a href="#">Filmes</a></li>
-        <li><a href="#">Séries</a></li>
+        <li><a [routerLink]="['/filmes-series']" (click)="navigateToDetails('movie')">Filmes</a></li>
+        <li><a [routerLink]="['/filmes-series']" (click)="navigateToDetails('tv')">Séries</a></li>
       </ul>
       <div class="logo">
-        <img src="../../../assets/logo.png" alt="Logo GDF Max">
+        <a [routerLink]="['/']">
+          <img src="../../../assets/logo.png" alt="Logo GDF Max">
+        </a>
       </div>
       <div class="search" [ngClass]="{'open': isSearchOpen}">
         <label>

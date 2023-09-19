@@ -16,6 +16,17 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
+  getTopRanked(type: string): Observable<any> {
+    let url = '';
+
+    if (type === 'movie') {
+      url = `${this.apiUrl}/movie/top_rated`;
+    } else if (type === 'tv') {
+      url = `${this.apiUrl}/tv/top_rated`;
+    }
+
+    return this.http.get(`${url}?api_key=${this.apiKey}&language=${this.language}`);
+  }
 
   searchMoviesInHighDemand(): Observable<Movie[]> {
     return this.http.get(`${this.apiUrl}/movie/popular?api_key=${this.apiKey}&language=${this.language}`).pipe(

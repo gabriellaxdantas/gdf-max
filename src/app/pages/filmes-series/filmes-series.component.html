@@ -1,0 +1,20 @@
+<div class="container-top-ranked">
+  <app-nav-bar></app-nav-bar>
+
+  <div class="top-ranked-results-container">
+    <div class="top-ranked-results-list">
+      <div class="top-ranked-results" *ngIf="topRankedData.length > 0">
+        <h2>{{ type === 'movie' ? 'Filmes' : 'Séries' }} Top Ranked</h2>
+        <div class="top-ranked-results-list">
+          <div class="top-ranked-result" *ngFor="let result of topRankedData">
+            <a [routerLink]="['/details', result.media_type, result.id]">
+              <img class="movie-image" [src]="'https://image.tmdb.org/t/p/w500/' + result.poster_path" alt="{{ result.title }}" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

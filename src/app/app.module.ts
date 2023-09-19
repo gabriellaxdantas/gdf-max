@@ -19,6 +19,8 @@ import { CardPopularShowsComponent } from './components/card-popular-shows/card-
 import { FooterComponent } from './components/footer/footer.component';
 import { CardRankedShowsComponent } from './components/card-ranked-shows/card-ranked-shows.component';
 import { SearchedComponent } from './pages/searched/searched.component';
+import { FilmesSeriesComponent } from './pages/filmes-series/filmes-series.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { SearchedComponent } from './pages/searched/searched.component';
     CardPopularShowsComponent,
     FooterComponent,
     CardRankedShowsComponent,
-    SearchedComponent
+    SearchedComponent,
+    FilmesSeriesComponent
   ],
   imports: [
     BrowserModule,
