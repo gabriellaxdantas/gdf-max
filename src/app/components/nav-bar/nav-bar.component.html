@@ -1,18 +1,20 @@
 <header>
   <nav class="navbar" [ngClass]="{'scrolled': isScrolled}">
     <div class="container">
-      <ul class="menu">
-        <li><a [routerLink]="['/filmes-series']" [queryParams]="{ type: 'movie' }">Filmes</a></li>
-        <li><a [routerLink]="['/filmes-series']" [queryParams]="{ type: 'tv' }">Séries</a></li>
-      </ul>
+      <div class="links">
+        <ul class="menu">
+          <li><a [routerLink]="['/filmes-series']" [queryParams]="{ type: 'movie' }">Filmes</a></li>
+          <li><a [routerLink]="['/filmes-series']" [queryParams]="{ type: 'tv' }">Séries</a></li>
+        </ul>
+      </div>
       <div class="logo">
         <a [routerLink]="['/']">
           <img src="../../../assets/logo.png" alt="Logo GDF Max">
         </a>
       </div>
-      <div class="search" [ngClass]="{'open': isSearchOpen}">
+      <div class="search">
         <label>
-          <input type="text" [(ngModel)]="query" *ngIf="isSearchOpen" placeholder="Pesquisar">
+          <input type="text" [(ngModel)]="query" placeholder="Pesquisar" (keydown.enter)="toggleSearch()"/>
           <button type="button" (click)="toggleSearch()">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
